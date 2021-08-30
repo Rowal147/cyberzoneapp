@@ -1,0 +1,64 @@
+{
+  "name": "#CyberZone",
+  "short_name": "#CyberZone",
+  "description": "Bienvenid@s a #herramienta echa por Rowal:)",
+  "background_color": "#36b729",
+  "theme_color": "#8DC26F",
+  "orientation": "portrait",
+  "display": "standalone",
+  "start_url": "./?utm_source=web_app_manifest",
+  "scope": "./",
+  "lang": "es-MX",
+  "icons": [
+    {
+      "src": "./img/pp1024.jpg",
+      "sizes": "1024x1024",
+      "type": "image/png"
+    },
+    {
+      "src": "./img/pp512.jpg",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "./img/pp384.jpg",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "./img/pp256.jpg",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "./img/pp192.jpg",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "./img/pp128.jpg",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "./img/pp96.jpg",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "./img/pp64.jpg",
+      "sizes": "64x64",
+      "type": "image/png"
+    },
+    {
+      "src": "./img/pp32.jpg",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "./img/pp16.jpg",
+      "sizes": "16x16",
+      "type": "image/png"
+    }
+  ]
+}

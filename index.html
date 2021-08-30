@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberZone</title>
+    <meta name="theme-color" content="#F0DB4F">
+    <meta name="MobileOptimized" content="width">
+    <meta name="HandheldFriendly" content="true">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/jpg" href="./img/pp16.jpg">
+    <link rel="apple-touch-icon" href="./img/pp16.jpg">
+    <link rel="apple-touch-startup-image" href="./img/pp16.jpg">
+    <link rel="manifest" href="./manifest.json">
+    <link rel="stylesheet" href="./style.css">
+
+     
+
+</head>
+<body>
+ 
+    <div id="red" class="section" >
+   <header>
+        <div id="./logo">
+            <img src="pp.jpg" alt="">
+        </div>
+    </header>
+      
+    </div>
+
+    <div  class="login-page">
+        <div class="form"> 
+
+       
+
+    <form id="formulario" >
+        <label for="nombre">Nombre</label>
+        <input type="text" name="nombre"  placeholder="Nombre Cliente"  required>
+        <br>
+        <label for="apellidos">Apellido</label>
+        <input type="text" name="apellidos" placeholder="Apellidos" required >
+        <br>
+        <label for="nit">Nit..</label>
+        <input type="number" name="nit" placeholder="Numero de Nit" >
+        <br>
+        <label for="telefono">Telefono</label>
+        <input type="number" name="telefono" placeholder="Numero de Telefono"   minlength="12" maxlength="6" required pattern="[A-Za-z0-9]+" />
+        <br>
+        <label for="planes">Plan</label>
+        <br>
+        <select name="planes">
+            <option value="6 megas" selected >6 Megas</option>
+            <option value="8 megas" >8 Megas</option>
+            <option value="12  megas">12 Megas</option>
+          </select>
+          <input id="envia" type="submit">
+         <br>
+         <input type="text" name="notas" placeholder="Comentarios" >
+
+    </form>
+
+    <!-- <a href="https://api.whatsapp.com/send?phone=1111111111">Send Message</a> -->
+       </div>
+    </div>
+    <script>
+    var lugar;
+    var $divRed = document.getElementById('red')
+    
+
+
+    function estadoDeLaRed(){
+
+        //    window.addEventListener("online", (e)=> console.log(navigator.onLine));
+        //  window.addEventListener("offline", (e)=> console.log(navigator.onLine));
+        //window.addEventListener("online", (e)=> alert(navigator.onLine));
+        //window.addEventListener("offline", (e)=> alert(navigator.onLine));
+    
+        const isOnLine = ()=>{
+            const $div = document.createElement("div");
+            
+            if(navigator.onLine){
+                $div.textContent = "Conexion Restablesida";
+                $div.classList.add("online");
+                $div.classList.remove("offline");
+            }else{
+                $div.textContent = "Conexion Perdida";
+                $div.classList.add("offline");
+                $div.classList.remove("online");
+            }
+
+            document.body.insertAdjacentElement("afterbegin", $div);
+            setTimeout(()=> document.body.removeChild($div),4000)
+
+
+        };
+
+        window.addEventListener("online", (e)=>isOnLine())
+        window.addEventListener("offline", (e)=>isOnLine())
+
+
+    }
+
+
+    estadoDeLaRed()
+
+
+        //console.log(formulario.nombre.value);
+        function localidado() {
+            options = {
+                enableHighAccury: true,
+                timeout:5000,
+                maximumAge:0
+
+            }
+            
+            function suses (position) {
+                let cordenadas  = position.coords;
+             //  console.log()
+
+               // console.log(position);
+                let latitud = cordenadas.latitude,
+                   longitud = cordenadas.longitude,
+                    metros  = cordenadas.accuracy
+
+                return lugar = ` ${longitud} , ${longitud} , ${metros}`
+
+               console.log(lugar)
+      
+            }
+
+            let error = (err)=>{
+                console.log(err)
+            }
+
+            navigator.geolocation.getCurrentPosition(suses,error,options)
+        }
+
+
+        let fun = document.addEventListener('submit', (e)=>{
+            e.preventDefault()
+            let formulario = document.getElementById('formulario')
+            
+           
+         var urlWatsap = "https://api.whatsapp.com/",
+           numeroTelefonico  = "send?phone=+50237402432&text=",
+           nombreEviar = formulario.nombre.value,
+           apellidoEviar = formulario.apellidos.value,
+           nitEviar     = formulario.nit.value,
+           telefonoEviar = formulario.telefono.value,
+           direcion  = lugar,
+           planes = formulario.planes.value,
+           notas= formulario.notas.value
+
+           let fecha = new Date
+
+    HoraInstalacion = fecha.toLocaleString()
+        console.log(HoraInstalacion)
+
+        //console.log(urlWatsap+numeroTelefonico)
+      //  console.log(`${urlWatsap}${numeroTelefonico}`)
+        
+  
+    open(`${urlWatsap}${numeroTelefonico} 
+    /Nombre: ${nombreEviar} 
+    / Apellido: ${apellidoEviar}
+    / Nit: ${nitEviar || 'C/F'}
+    / Telefofno:
+     ${telefonoEviar} 
+     / Posicion: ${lugar || 'sin ubicacion'} 
+     /Plan de ${planes} 
+     / FECHA DE INSTALACION: ${HoraInstalacion} 
+     /Notas: ${notas || ' '}`)
+            
+     
+     console.log(lugar)
+    })
+    
+
+    //  console.log(fecha)
+    
+    localidado(fun)
+
+
+    
+    
+    </script>
+  <script src="./script.js"></script>
+
+</body>
+</html>
